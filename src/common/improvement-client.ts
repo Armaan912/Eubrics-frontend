@@ -11,11 +11,11 @@ export const postSubImprovements = async(id:string|number,data:{ description: st
 }
 
 export const putSubImprovements = async(subId:string|number,data:{ description: string })=>{
-    const response = await put(`/sub-improvements/${subId}`,data)
+    const response = await put(`/improvements/sub/${subId}`,data)
     return response
 }
 
 export const deleteSubImprovements = async(subId:string|number)=>{
-    const response = await delete_(`/sub-improvements/${subId}`)
+    const response = await delete_(`/improvements/sub/${subId}`)
     return response
 }

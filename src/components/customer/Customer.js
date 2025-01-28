@@ -11,7 +11,6 @@ function Customer() {
 	const [customers, setCustomers] = useState([]);
 
 	useEffect(() => {
-		axios;
 		getcustomers()
 			.then((res) => setCustomers(res))
 			.catch((err) => {
@@ -58,7 +57,7 @@ function Customer() {
 								Delete
 							</button>
 							<Link
-								href={`/improvements/${customer.id}/sub`}
+								href={`/subimprovement/${customer.id}/sub`}
 								className="view-button"
 							>
 								View Behaviour

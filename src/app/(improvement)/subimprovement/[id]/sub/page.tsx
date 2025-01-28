@@ -1,5 +1,5 @@
 import React from 'react'
-import SubImprovement from '../../../components/subimprovement/SubImprovement'
+import SubImprovement from '../../../../../components/subimprovement/SubImprovement'
 
 
 const page = () => {

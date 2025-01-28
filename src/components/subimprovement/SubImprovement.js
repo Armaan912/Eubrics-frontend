@@ -2,9 +2,10 @@
 
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link, useParams } from "react-router-dom";
 import './SubImprovement.css';
 import { deleteSubImprovements, getSubImprovements, postSubImprovements, putSubImprovements } from "@/common/improvement-client";
+import Link from "next/link";
+import { useParams } from "next/navigation";
 
 function SubImprovement() {
     const { id } = useParams();
@@ -15,7 +16,7 @@ function SubImprovement() {
 
     useEffect(() => {
             getSubImprovements(id)
-            .then((res) => setSubImprovements(res.data))
+            .then((res) => setSubImprovements(res))
             .catch((err) => console.error(err));
     }, [id]);
 
@@ -55,7 +56,7 @@ function SubImprovement() {
     return (
         <div>
             <h2>Behaviourial Tasks</h2>
-            <Link to="/">Back to Behaviours</Link>
+            <Link href="/">Back to Behaviours</Link>
             <br/>
             <br/>
             <input
