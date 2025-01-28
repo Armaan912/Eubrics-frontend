@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import "./Login.css";
 import Link from "next/link";
 import { postlogin } from "@/common/auth-client";
 import { setCookie } from "cookies-next/client";
