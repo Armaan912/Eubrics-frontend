@@ -1,8 +1,6 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { Link } from "react-router-dom";
 import "./UpdateCustomer.css";
 import { useRouter, useSearchParams, useParams } from "next/navigation";
 import { getcustomers, updateCustomers } from "@/common/customer-client";
@@ -47,7 +45,7 @@ function UpdateCustomer() {
 					Update
 				</button>
 			</form>
-			<button className="back-button" onClick={() => navigate("/")}>
+			<button className="back-button" onClick={() => router.push("/customer")}>
 				Back to Behaviours
 			</button>
 		</div>

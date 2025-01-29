@@ -4,37 +4,44 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { getCookie } from "cookies-next/client";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+
+
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({
-	children
-}: Readonly<{
-	children: React.ReactNode;
-}>) {
-	const cookie = getCookie("access_token");
+  children
+}: Readonly<{ children: React.ReactNode }>) {
+  const [loading, setLoading] = useState(false);
+  const cookie = getCookie("access_token");
+  const path = usePathname();
+  const router = useRouter();
 
-	const path = usePathname();
-	const router = useRouter();
+  useEffect(() => {
+    const openRoutes = ["/login", "/register"];
+    const isAuth = !!cookie;
+    const defaultRoute = isAuth ? "/customer" : "/login";
 
-	useEffect(() => {
-		const openRoutes = ["/login", "/register"];
-		const isAuth = cookie ? true : false;
-		const defaultRoute = isAuth ? "/customer" : "/login";
+    setLoading(true); // Show loader before redirect
 
-		if (!isAuth && !openRoutes.includes(path)) {
-			router.push(defaultRoute);
-		}
+    if (!isAuth && !openRoutes.includes(path)) {
+      router.push(defaultRoute);
+    }
 
-		if (isAuth && (openRoutes.includes(path) || path === "/")) {
-			router.push("/customer");
-		}
-	}, [path, cookie]);
+    if (isAuth && (openRoutes.includes(path) || path === "/")) {
+      router.push("/customer");
+    }
 
-	return (
-		<html lang="en">
-			<body className={inter.className}>{children}</body>
-		</html>
-	);
+    setTimeout(() => setLoading(false), 1000); // Simulate delay
+  }, [path, cookie]);
+
+  return (
+    <html lang="en">
+      <body className={inter.className}>
+        
+        {children}
+      </body>
+    </html>
+  );
 }

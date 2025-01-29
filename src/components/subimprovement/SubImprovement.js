@@ -5,9 +5,10 @@ import axios from "axios";
 import './SubImprovement.css';
 import { deleteSubImprovements, getSubImprovements, postSubImprovements, putSubImprovements } from "@/common/improvement-client";
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import { useRouter,useParams } from "next/navigation";
 
 function SubImprovement() {
+    const router = useRouter();
     const { id } = useParams();
     const [subImprovements, setSubImprovements] = useState([]);
     const [newSubImprovement, setNewSubImprovement] = useState("");
@@ -56,7 +57,9 @@ function SubImprovement() {
     return (
         <div>
             <h2>Behaviourial Tasks</h2>
-            <Link href="/">Back to Behaviours</Link>
+            <button className="back-button" onClick={() => router.push("/customer")}>
+				Back to Behaviours
+			</button>
             <br/>
             <br/>
             <input
